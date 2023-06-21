@@ -40,7 +40,7 @@ Please cite the following paper if you use the code provided in this repository.
  > ...
 
 ```bibtex
-@inproceedings{dong2023mmt,
+@inproceedings{...,
     author = {...},
     title = {From Hummings to Covers: A Semi-Supervised Approach for Query-by-Humming Task},
     booktitle = {...},
