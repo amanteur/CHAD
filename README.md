@@ -7,8 +7,7 @@ The code is used for downloading the dataset from YouTube only.
 ---
 ## Table of Contents
 
-1. [Abstract](#abstract)
-2. [Dependencies](#dependencies)
+1. [Dependencies](#dependencies)
 3. [Usage](#usage)
 4. [Repository structure](#structure)
 5. [Citation](#cite)
