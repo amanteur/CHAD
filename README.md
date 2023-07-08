@@ -4,6 +4,8 @@ This repository contains the official code of ["From Hummings to Covers: A Semi-
 
 The code is used for downloading the dataset from YouTube only.
 
+Code and data will be available soon!
+
 ---
 ## Table of Contents
 
@@ -13,6 +15,7 @@ The code is used for downloading the dataset from YouTube only.
 5. [Citation](#cite)
 
 ---
+
 <a name="dependencies"/>
 
 ## Dependencies
