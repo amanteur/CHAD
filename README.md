@@ -65,6 +65,8 @@ Options:
 ```
 By running this command, you initiate the download of audio files from YouTube and extraction of the necessary fragments from them.
 
+In addition, there is a Jupyter Notebook [`notebooks/show_examples.ipynb`](notebooks/show_examples.ipynb), which displays random excerpts from the dataset.
+
 ---
 <a name="structure"/>
 
