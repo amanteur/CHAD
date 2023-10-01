@@ -44,7 +44,7 @@ To download the dataset, you can use the following command:
 ```bash
 bash run.sh
 ```
-This command runs the `main.py` script, which provides the following command-line options:
+This command runs the [`main.py`](src/main.py) script, which provides the following command-line options:
 ```bash
 Usage: main.py [OPTIONS]
 
@@ -71,7 +71,7 @@ In addition, there is a Jupyter Notebook [`notebooks/show_examples.ipynb`](noteb
 <a name="structure"/>
 
 ## Dataset structure
-The `metadata/dataset.csv` file provides information with the following fields:
+The [`metadata/dataset.csv`](metadata/dataset.csv) file provides information with the following fields:
 - `group_id`: An identification code that serves as an identifier for a group of fragments. Essentially, it represents a unique track.
 - `fragment_id`: An identification code assigned to each fragment within a group. A single group can contain multiple fragment IDs.
 - `id`: An identification code that represents a specific version of a fragment, which can be a humming, cover, or the original track fragment.
