@@ -2,7 +2,11 @@
 
 This repository contains the official code of ["A Semi-Supervised Deep Learning Approach to Dataset Collection for Query-by-Humming Task"]() (ISMIR 2023).
 
-The code is used for downloading the dataset from YouTube.
+The code is used for downloading the dataset.
+
+UPD:
+
+The hummings subset of the dataset is now available on [HuggingFace](https://huggingface.co/datasets/amanteur/CHAD_hummings)!
 
 ---
 ## Table of Contents
@@ -101,9 +105,7 @@ This structured hierarchy organizes the audio files and fragments, making it eas
 
 ### Hummings Subset
 
-The hummings subset of the dataset is now available on [HuggingFace](https://huggingface.co/datasets/amanteur/CHAD_hummings)! 
-
-You can download the dataset directly via HF or using `main.py` with the flag `--download-hf-dataset`. 
+You can download the dataset directly via [HF](https://huggingface.co/datasets/amanteur/CHAD_hummings) or using `main.py` with the flag `--download-hf-dataset`. 
 
 The `tar.gz` filestructure is the same as in the whole dataset. 
 
