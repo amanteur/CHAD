@@ -1,33 +1,22 @@
-import datetime
 import logging
 
 import click
 
 from downloader import DatasetDownloader
+from utils import setup_logging, download_and_extract_hf_dataset
 
-LOG_DIR = "./logs"
-
-
-def setup_logging():
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-        handlers=[
-            logging.FileHandler(f"{LOG_DIR}/{timestamp}.log"),
-            logging.StreamHandler(),
-        ],
-    )
+setup_logging()
+logger: logging.Logger = logging.getLogger(__name__)
 
 
 @click.command()
 @click.option(
-    "--csv_path",
+    "--csv-path",
     required=True,
     help="Path to the CSV file containing dataset information",
 )
 @click.option(
-    "--tgt_dir",
+    "--tgt-dir",
     required=True,
     help="Target directory for saving audio files and fragments",
 )
@@ -37,36 +26,51 @@ def setup_logging():
     help="Extension of saved audio files",
 )
 @click.option(
-    "--save_fragments_audios", default=True, type=bool, help="Save audio fragments"
+    "--download-hf-dataset",
+    is_flag=True,
+    type=bool,
+    help="Download hummings subset from HuggingFace",
 )
 @click.option(
-    "--save_full_audios", default=False, type=bool, help="Save full audio files"
+    "--save-fragments-audios", is_flag=True, type=bool, help="Save audio fragments"
 )
 @click.option(
-    "--save_metadata", default=True, type=bool, help="Save YouTube metadata information"
+    "--save-full-audios", is_flag=True, type=bool, help="Save full audio files"
 )
 @click.option(
-    "--n_processes",
+    "--save-metadata", is_flag=True, type=bool, help="Save YouTube metadata information"
+)
+@click.option(
+    "--n-processes",
     default=8,
     type=int,
     help="Number of processes for parallel processing",
 )
 @click.option("--sr", default=16000, type=int, help="Sample rate for audio")
-@click.option("--mono/--no-mono", default=True, help="Mono or stereo audio")
+@click.option("--mono/--no-mono", default=True, type=bool, help="Mono or stereo audio")
 def main(
-    csv_path,
-    tgt_dir,
-    extension,
-    save_fragments_audios,
-    save_full_audios,
-    save_metadata,
-    n_processes,
-    sr,
-    mono,
+    csv_path: str,
+    tgt_dir: str,
+    extension: str,
+    download_hf_dataset: bool,
+    save_fragments_audios: bool,
+    save_full_audios: bool,
+    save_metadata: bool,
+    n_processes: int,
+    sr: int,
+    mono: bool,
 ):
-    setup_logging()
-    logger = logging.getLogger(__name__)
+    if download_hf_dataset:
+        logger.info("Starting downloading hummings subset from HuggingFace...")
+        try:
+            download_and_extract_hf_dataset(tgt_dir)
+        except Exception as e:
+            logger.exception(
+                "An error occurred during downloading dataset from HuggingFace: %s",
+                str(e),
+            )
 
+    logger.info("Starting downloading cover subset from YouTube...")
     try:
         downloader = DatasetDownloader(
             csv_path=csv_path,
@@ -82,7 +86,9 @@ def main(
         downloader.run()
 
     except Exception as e:
-        logger.exception("An error occurred during dataset preparation: %s", str(e))
+        logger.exception(
+            "An error occurred during downloading dataset from YouTube: %s", str(e)
+        )
     return None
 
 

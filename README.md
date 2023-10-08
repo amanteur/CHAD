@@ -8,9 +8,10 @@ The code is used for downloading the dataset from YouTube.
 ## Table of Contents
 
 1. [ToDo](#todo)
-1. [Dependencies](#dependencies)
+2. [Dependencies](#dependencies)
 3. [Usage](#usage)
-4. [Repository structure](#structure)
+4. [Dataset Structure](#structure)
+   - [Hummings Subset](#hummings)
 5. [Citation](#cite)
 
 ---
@@ -22,7 +23,7 @@ The code is used for downloading the dataset from YouTube.
 - [x] Add the dataset download pipeline
 - [x] Include metadata in the download pipeline
 - [x] Write the README.md
-- [ ] Upload the humming part of the dataset
+- [x] Upload the humming part of the dataset to HuggingFace
 
 
 ---
@@ -45,32 +46,34 @@ To download the dataset, you can use the following command:
 bash run.sh
 ```
 This command runs the [`main.py`](src/main.py) script, which provides the following command-line options:
-```bash
+```
 Usage: main.py [OPTIONS]
 
 Options:
-  --csv_path TEXT                 Path to the CSV file containing dataset
-                                  information  [required]
-  --tgt_dir TEXT                  Target directory for saving audio files and
-                                  fragments  [required]
-  --extension TEXT                Extension of saved audio files
-  --save_fragments_audios BOOLEAN
-                                  Save audio fragments
-  --save_full_audios BOOLEAN      Save full audio files
-  --save_metadata BOOLEAN         Save YouTube metadata information
-  --n_processes INTEGER           Number of processes for parallel processing
-  --sr INTEGER                    Sample rate for audio
-  --mono / --no-mono              Mono or stereo audio
-  --help                          Show this message and exit.
+  --csv-path TEXT          Path to the CSV file containing dataset information
+                           [required]
+  --tgt-dir TEXT           Target directory for saving audio files and
+                           fragments  [required]
+  --extension TEXT         Extension of saved audio files
+  --download-hf-dataset    Download hummings subset from HuggingFace
+  --save-fragments-audios  Save audio fragments
+  --save-full-audios       Save full audio files
+  --save-metadata          Save YouTube metadata information
+  --n-processes INTEGER    Number of processes for parallel processing
+  --sr INTEGER             Sample rate for audio
+  --mono / --no-mono       Mono or stereo audio
+  --help                   Show this message and exit.
 ```
-By running this command, you initiate the download of audio files from YouTube and extraction of the necessary fragments from them.
+By running this command, you initiate the download of audio files firstly, from HuggingFace repo, and secondly, 
+from YouTube and extraction of the necessary fragments from them.
 
-In addition, there is a Jupyter Notebook [`notebooks/show_examples.ipynb`](notebooks/show_examples.ipynb), which displays random excerpts from the dataset.
+In addition, there is a Jupyter Notebook [`notebooks/show_examples.ipynb`](notebooks/show_examples.ipynb), 
+which displays random excerpts from the dataset.
 
 ---
 <a name="structure"/>
 
-## Dataset structure
+## Dataset Structure
 The [`metadata/dataset.csv`](metadata/dataset.csv) file provides information with the following fields:
 - `group_id`: An identification code that serves as an identifier for a group of fragments. Essentially, it represents a unique track.
 - `fragment_id`: An identification code assigned to each fragment within a group. A single group can contain multiple fragment IDs.
@@ -93,6 +96,16 @@ The downloaded dataset is structured as follows:
 └── ...
 ```
 This structured hierarchy organizes the audio files and fragments, making it easier to navigate and work with the dataset.
+
+<a name="hummings"/>
+
+### Hummings Subset
+
+The hummings subset of the dataset is now available on [HuggingFace](https://huggingface.co/datasets/amanteur/CHAD_hummings)! 
+
+You can download the dataset directly via HF or using `main.py` with the flag `--download-hf-dataset`. 
+
+The `tar.gz` filestructure is the same as in the whole dataset. 
 
 ---
 <a name="cite"/>

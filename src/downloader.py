@@ -51,7 +51,7 @@ class DatasetDownloader:
         self,
         csv_path: str,
         tgt_dir: str,
-        extension: str = '.mp3',
+        extension: str = ".mp3",
         save_fragments_audios: bool = True,
         save_full_audios: bool = False,
         save_metadata: bool = True,
@@ -100,7 +100,9 @@ class DatasetDownloader:
         self.fragment_dir: Path = self.tgt_dir / "fragments"
         self.save_metadata_path = self.tgt_dir / "yt_metadata.csv"
         self.fragment_path_template: str = str(
-            (self.fragment_dir / "{group_id}" / "{fragment_id}" / "{id}").with_suffix(self.extension)
+            (self.fragment_dir / "{group_id}" / "{fragment_id}" / "{id}").with_suffix(
+                self.extension
+            )
         )
         self.audio_dir.mkdir(parents=True, exist_ok=True)
         self.fragment_dir.mkdir(parents=True, exist_ok=True)
@@ -124,11 +126,11 @@ class DatasetDownloader:
         Displays status messages based on saving options.
         """
         if self.save_fragments_audios:
-            logger.info("Saving dataset's fragments...")
+            logger.info("Saving dataset's fragments is enabled.")
         if self.save_full_audios:
-            logger.info("Saving audios from given YouTube links...")
+            logger.info("Saving audios from given YouTube links is enabled.")
         if self.save_metadata:
-            logger.info("Saving YouTube videos metadata information...")
+            logger.info("Saving YouTube videos metadata information is enabled.")
         if self.dry_mode:
             logger.info("Running in dry mode...")
         return None
@@ -227,7 +229,10 @@ class DatasetDownloader:
             for i, r in df_subset.iterrows():
                 output_path = Path(
                     self.fragment_path_template.format(
-                        group_id=r["group_id"], fragment_id=r["fragment_id"], id=r["id"], extension=self.extension
+                        group_id=r["group_id"],
+                        fragment_id=r["fragment_id"],
+                        id=r["id"],
+                        extension=self.extension,
                     )
                 )
                 intervals = r["interval"]
@@ -289,11 +294,11 @@ class DatasetDownloader:
 
     def run(self) -> None:
         """
-        Run the dataset preparation process.
+        Run the dataset downloading process.
 
         :return: DataFrame containing YouTube videos' metadata information if available.
         """
-        logger.info("Starting dataset preparation...")
+        logger.info("Starting dataset downloading...")
         if self.dry_mode:
             logger.info("dry_mode is enabled. Exiting...")
             return None
@@ -312,7 +317,7 @@ class DatasetDownloader:
             try:
                 self._save_yt_metadata(yt_metadata_df)
             except Exception as e:
-                logger.error(f"Error while saving YouTube metadata: {e}")
+                logger.error(f"Error while saving YouTube metadata to CSV: {e}")
 
         # Delete empty directory
         if not self.save_full_audios:
@@ -321,5 +326,5 @@ class DatasetDownloader:
             except Exception as e:
                 logger.warning(f"Error while removing audio directory: {e}")
 
-        logger.info("Dataset preparation completed!")
+        logger.info("Dataset downloading is completed!")
         return None
