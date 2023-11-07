@@ -1,8 +1,8 @@
 # CHAD: Cover and Hummings Aligned Dataset
 
-This repository contains the official code of ["A Semi-Supervised Deep Learning Approach to Dataset Collection for Query-by-Humming Task"]() (ISMIR 2023).
+> This repository contains the official code of the paper ["A Semi-Supervised Deep Learning Approach to Dataset Collection for Query-by-Humming Task"](https://archives.ismir.net/ismir2023/paper/000077.pdf) published in the Proceedings of the [24th International Society for Music Information Retrieval (ISMIR) Conference, Milan, 2023](https://ismir2023.ismir.net).
 
-The code is used for downloading the dataset.
+The code is used for downloading the cover part of the dataset.
 
 UPD:
 
@@ -11,7 +11,7 @@ The hummings subset of the dataset is now available on [HuggingFace](https://hug
 ---
 ## Table of Contents
 
-1. [ToDo](#todo)
+1. [ToDo's](#todo)
 2. [Dependencies](#dependencies)
 3. [Usage](#usage)
 4. [Dataset Structure](#structure)
@@ -22,7 +22,7 @@ The hummings subset of the dataset is now available on [HuggingFace](https://hug
 
 <a name="todo"/>
 
-## ToDo
+## ToDo's
 - [x] Set up the repository
 - [x] Add the dataset download pipeline
 - [x] Include metadata in the download pipeline
@@ -119,7 +119,9 @@ Please cite the following paper if you use the code or dataset provided in this 
 @inproceedings{Amatov2023,
     title={A Semi-Supervised Deep Learning Approach to Dataset Collection for Query-by-Humming Task},
     author={Amatov, Amantur and Lamanov, Dmitry and Titov, Maksim and Vovk, Ivan and Makarov, Ilya and Kudinov, Mikhail},
+    booktitle={Proceedings of the 24th International Society for Music Information Retrieval Conference {(ISMIR)}},
     year={2023},
+    url={https://archives.ismir.net/ismir2023/paper/000077.pdf},
 }
 ```
 
